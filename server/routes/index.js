@@ -1,5 +1,9 @@
 const router = require('express').Router();
 
+const soup_kitchen = require('./soup_kitchen');
+
+router.use('/soup_kitchen', soup_kitchen);
+
 //Test for communications
 router.get('/hello', (req, res) => {
   try {
