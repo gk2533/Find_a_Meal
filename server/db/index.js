@@ -5,7 +5,7 @@ const config = {
   port: 5432,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  database: "hackBU_db"
+  database: "hackbu_db"
 };
 
 const pool = new Pool(config);
