@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Axios from 'axios';
 
 import HomePage from '../pages/Home/HomePage';
 import SoupkitchenPage from '../pages/Soupkitchen/SoupkitchenPage';
