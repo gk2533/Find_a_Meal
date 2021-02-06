@@ -1,10 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import HomePage from '../pages/Home/HomePage';
-import SoupkitchenPage from '../pages/Soupkitchen/SoupkitchenPage';
-import FindPage from '../pages/Find/FindPage';
-import ReviewPage from '../pages/Review/ReviewPage';
+import HomePage from '../pages/HomePage';
+import SoupkitchenPage from '../pages/SoupkitchenPage';
+import ReviewPage from '../pages/ReviewPage';
 
 export default () => {
   return (
@@ -15,10 +14,7 @@ export default () => {
       <Route exact path='/soupkitchen'>
         <SoupkitchenPage />
       </Route>
-      <Route exact path='/find'>
-        <FindPage />
-      </Route>
-      <Route exact path='/find'>
+      <Route exact path='/review'>
         <ReviewPage />
       </Route>
       <Route exact path='/404'>
