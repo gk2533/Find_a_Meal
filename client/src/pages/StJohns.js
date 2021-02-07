@@ -181,7 +181,7 @@ export default () => {
       </div>
       <Container>
         <Header as='h1' style={style.logo} textAlign='center'>
-          Soupkitchen
+          Find a Meal
         </Header>
         <Form style={style.searchbar}>
           <Form.Field>
@@ -207,16 +207,11 @@ export default () => {
             wrapped
             ui={false}
           />
-          <Card.Content
-            style={style.cardTitle}
-            header={`${currentSoupKitchen.name}`}
-          />
+          <Card.Content style={style.cardTitle} header='St_John_Cathedral' />
           <Card.Description style={style.cardLocation}>
             3.6/5 Stars
           </Card.Description>
-          <Card.Meta style={style.cardLocation}>
-            {currentSoupKitchen.location}
-          </Card.Meta>
+          <Card.Meta style={style.cardLocation}>New York, New York</Card.Meta>
           <Card.Content description={description} />
 
           <div style={style.review}></div>

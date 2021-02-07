@@ -23,13 +23,13 @@ const style = {
 
 export default () => {
   const soupkitchens = ['Zhihan', 'Zamie', 'Gabe', 'Zhihan Chen'];
-  
-  const variables = []
-  
+
+  const variables = [];
+
   const [currentSoupKitchens, setCurrentSoupKitchens] = useState({});
 
   const [currentId, setCurrentId] = useState(0);
-  
+
   const [currentSearch, setSearch] = useState({
     search: '',
   });
@@ -37,26 +37,26 @@ export default () => {
   const updateCurrentSearch = (event) => {
     setSearch({ ...currentSearch, [event.target.name]: event.target.value });
   };
-  
+
   useEffect(() => {
-      const getSoupKitchens = async () => {
-          Axios.get("api/soup_kitchen/show_soup_kitchens")
-            .then(resp => {
-              setCurrentSoupKitchens(resp.data);
-              console.log(resp);
-              console.log(resp.data);
-            })
-            .catch(error =>{
-              console.log(error)
-            });
-      }
-      getSoupKitchens();
+    const getSoupKitchens = async () => {
+      Axios.get('api/soup_kitchen/show_soup_kitchens')
+        .then((resp) => {
+          setCurrentSoupKitchens(resp.data);
+          console.log(resp);
+          console.log(resp.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getSoupKitchens();
   }, [currentId]);
-  
+
   for (var i = 0; i < currentSoupKitchens.length; i++) {
-      variables[i] = currentSoupKitchens[i].name;
+    variables[i] = currentSoupKitchens[i].name;
   }
-  
+
   const searchMe = () => {
     var i = 0;
     var newList = [];
@@ -70,7 +70,7 @@ export default () => {
     if (newList.length === variables.length) {
       return;
     }
-    
+
     return (
       <div>
         <h3>
@@ -88,37 +88,38 @@ export default () => {
 
   return (
     <div>
-      <div id="background-wrap">
-          <div class="x1">
-              <div class="cloud"></div>
-          </div>
+      <div id='background-wrap'>
+        <div class='x1'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x2">
-              <div class="cloud"></div>
-          </div>
+        <div class='x2'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x3">
-              <div class="cloud"></div>
-          </div>
+        <div class='x3'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x4">
-              <div class="cloud"></div>
-          </div>
+        <div class='x4'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x5">
-              <div class="cloud"></div>
-          </div>
+        <div class='x5'>
+          <div class='cloud'></div>
+        </div>
       </div>
       <Container>
         <Header as='h1' style={style.logo} textAlign='center'>
-          Soupkitchen
+          Find a Meal
         </Header>
         <Header as='h2' style={style.intro} textAlign='center'>
-          Spicy jalapeno bacon ipsum dolor amet tongue incididunt doner, ea pork
-          lorem id do. Cillum laboris exercitation in biltong sunt aliquip
-          fatback consequat duis ribeye officia bacon. Sunt porchetta enim beef
-          ribs est filet mignon pig id. Jowl labore shoulder tempor, in occaecat
-          id elit short loin do.
+          Welcome to Find a Meal, a PERN-stack web application focused on
+          connecting and identifying soup kitchens for homeless families across
+          the country. Our web application goes beyond the few available
+          alternatives by giving users the ability to post reviews of the soup
+          kitchen’s level of equal opportunity, sense of welcome, and overall
+          quality, as well as rate their service on a one-to-five scale.
         </Header>
         <Form style={style.searchbar}>
           <Form.Field>

@@ -170,7 +170,7 @@ export default () => {
       </div>
       <Container>
         <Header as='h1' style={style.logo} textAlign='center'>
-          Soupkitchen
+          Find a Meal
         </Header>
         <Form style={style.searchbar}>
           <Form.Field>
