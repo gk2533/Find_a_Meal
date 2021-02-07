@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
-import { Container, Header, Form, Input, Select, TextArea, Button } from 'semantic-ui-react';
+import {
+  Container,
+  Header,
+  Form,
+  Input,
+  Select,
+  TextArea,
+  Button,
+} from 'semantic-ui-react';
 import './style.css';
 
 const style = {
@@ -31,26 +39,27 @@ const ratingOptions = [
 
 export default () => {
   var soupkitchens = ['Zhihan', 'Zamie', 'Gabe', 'Zhihan Chen'];
-  
-  const variables = []
-  
+
+  const variables = [];
+
   let id = '';
-  
-  function getQueryVariable(variable)
-    {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] === variable){return pair[1];}
-       }
-       return(false);
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return pair[1];
+      }
     }
-  
+    return false;
+  }
+
   const [currentSoupKitchens, setCurrentSoupKitchens] = useState({});
 
   const [currentId, setCurrentId] = useState(0);
-  
+
   const [currentSearch, setSearch] = useState({
     search: '',
   });
@@ -58,52 +67,55 @@ export default () => {
   const [currentReview, setCurrentReview] = useState({
     id: id,
     review: '',
-    rate: 3
-  })
-  
+    rate: 3,
+  });
+
   const updateCurrentSearch = (event) => {
     setSearch({ ...currentSearch, [event.target.name]: event.target.value });
   };
-  
+
   const updateCurrentReview = (event) => {
-    setCurrentReview({ ...currentReview, [event.target.name]: event.target.value });
+    setCurrentReview({
+      ...currentReview,
+      [event.target.name]: event.target.value,
+    });
   };
-  
+
   useEffect(() => {
-      const getSoupKitchens = async () => {
-          Axios.get("api/soup_kitchen/show_soup_kitchens")
-            .then(resp => {
-              setCurrentSoupKitchens(resp.data);
-              console.log(resp);
-              console.log(resp.data);
-            })
-            .catch(error =>{
-              console.log(error)
-            });
-      }
-      getSoupKitchens();
+    const getSoupKitchens = async () => {
+      Axios.get('api/soup_kitchen/show_soup_kitchens')
+        .then((resp) => {
+          setCurrentSoupKitchens(resp.data);
+          console.log(resp);
+          console.log(resp.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+    getSoupKitchens();
   }, [currentId]);
-  
+
   for (var i = 0; i < currentSoupKitchens.length; i++) {
-      variables[i] = currentSoupKitchens[i].name;
+    variables[i] = currentSoupKitchens[i].name;
   }
-  
+
   const createReview = async (event) => {
     event.preventDefault();
-    
-    setCurrentReview({id: id})
-    
-    Axios.post("api/soup_kitchens/post_review", currentReview)
-      .then(resp => {
-          console.log(resp);
+
+    setCurrentReview({ id: id });
+
+    Axios.post('api/soup_kitchens/post_review', currentReview)
+      .then((resp) => {
+        console.log(resp);
       })
-      .catch(error => {
-          console.error(error);
-      })
-      
+      .catch((error) => {
+        console.error(error);
+      });
+
     // window.location.reload();
-  }
-    
+  };
+
   const searchMe = () => {
     var i = 0;
     var newList = [];
@@ -117,7 +129,7 @@ export default () => {
     if (newList.length === variables.length) {
       return;
     }
-    
+
     return (
       <div>
         <h3>
@@ -134,27 +146,27 @@ export default () => {
   };
 
   return (
-    <div onload={id = getQueryVariable('id')}>
-      <div id="background-wrap">
-          <div class="x1">
-              <div class="cloud"></div>
-          </div>
+    <div onload={(id = getQueryVariable('id'))}>
+      <div id='background-wrap'>
+        <div class='x1'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x2">
-              <div class="cloud"></div>
-          </div>
+        <div class='x2'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x3">
-              <div class="cloud"></div>
-          </div>
+        <div class='x3'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x4">
-              <div class="cloud"></div>
-          </div>
+        <div class='x4'>
+          <div class='cloud'></div>
+        </div>
 
-          <div class="x5">
-              <div class="cloud"></div>
-          </div>
+        <div class='x5'>
+          <div class='cloud'></div>
+        </div>
       </div>
       <Container>
         <Header as='h1' style={style.logo} textAlign='center'>
@@ -177,35 +189,30 @@ export default () => {
           {searchMe}
         </Form>
         <Header as='h3'>Leave a review!</Header>
-          <Form>
-            <Form.Field
-              id = 'rating'
-              control={Select}
-              options={ratingOptions}
-              label='Rating'
-              placeholder='5'
-              search
-              onClick={console.log(this.target.value)}
-              searchInput={{ id: 'form-select-rating' }}
-            />
-            <Form.Field
-              id='form-textarea-control-opinion'
-              control={TextArea}
-              label='Review'
-              placeholder='Write your review here'
-            />
-            <Form.Field
-              id='form-button-control-public'
-              control={Button}
-              content='Submit'
-              label=''
-            />
-          </Form>
+        <Form>
+          <Form.Field
+            id='rating'
+            control={Select}
+            options={ratingOptions}
+            label='Rating'
+            placeholder='5'
+            search
+            searchInput={{ id: 'form-select-rating' }}
+          />
+          <Form.Field
+            id='form-textarea-control-opinion'
+            control={TextArea}
+            label='Review'
+            placeholder='Write your review here'
+          />
+          <Form.Field
+            id='form-button-control-public'
+            control={Button}
+            content='Submit'
+            label=''
+          />
+        </Form>
       </Container>
-
-
-
-      
     </div>
   );
 };

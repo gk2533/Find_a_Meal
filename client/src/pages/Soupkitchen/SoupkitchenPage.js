@@ -2,7 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import { Redirect, Link } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
-import { Container, Header, Form, Input, Card, Image, Button } from 'semantic-ui-react';
+import {
+  Container,
+  Header,
+  Form,
+  Input,
+  Card,
+  Image,
+  Button,
+} from 'semantic-ui-react';
 import './style.css';
 
 const style = {
@@ -42,34 +50,34 @@ const description =
   'The Holy Spirit Soupkitchen has been open since 1374, and has served over 1 billion people. God bless you.';
 
 export default () => {
-  
   let name = '';
-  
-  function getQueryVariable(variable)
-    {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] === variable){return pair[1];}
-       }
-       return(false);
+
+  function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split('&');
+    for (var i = 0; i < vars.length; i++) {
+      var pair = vars[i].split('=');
+      if (pair[0] === variable) {
+        return pair[1];
+      }
     }
-  
-  const variables = []
+    return false;
+  }
+
+  const variables = [];
 
   const [currentSoupKitchens, setCurrentSoupKitchens] = useState({});
-  
+
   const [currentSoupKitchen, setCurrentSoupKitchen] = useState({
-      id : '',
-      name : '',
-      cumulative_rate: '',
-      picture_url: '',
-      location: ''
-  })
-  
+    id: '',
+    name: '',
+    cumulative_rate: '',
+    picture_url: '',
+    location: '',
+  });
+
   const [currentId, setCurrentId] = useState(0);
-  
+
   const [currentSearch, setSearch] = useState({
     search: '',
   });
@@ -79,44 +87,45 @@ export default () => {
   };
 
   useEffect(() => {
-      const getSoupKitchens = async () => {
-          Axios.get("api/soup_kitchen/show_soup_kitchens")
-            .then(resp => {
-              setCurrentSoupKitchens(resp.data);
-              console.log(resp);
-              console.log(resp.data);
-            })
-            .catch(error =>{
-              console.log(error)
-            });
-      }
-      
-      const getSoupKitchen = async () => {
-          Axios.get("api/soup_kitchen/:get_soup_kitchen", { params : { name : name } } )
-              .then(resp => {
-                  
-                  console.log(resp);
-                  console.log(resp.data);
-                  
-                  setCurrentSoupKitchen({
-                      id : resp.data.id,
-                      name : resp.data.name,
-                      cumulative_rate: resp.data.cumulative_rate,
-                      picture_url: resp.data.picture_url,
-                      location: resp.data.location
-                  });
-              })
-              .catch(error =>{
-                  console.error(error);
-              });
-      }
-      
-      getSoupKitchens();
-      getSoupKitchen();
+    const getSoupKitchens = async () => {
+      Axios.get('api/soup_kitchen/show_soup_kitchens')
+        .then((resp) => {
+          setCurrentSoupKitchens(resp.data);
+          console.log(resp);
+          console.log(resp.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    const getSoupKitchen = async () => {
+      Axios.get('api/soup_kitchen/:get_soup_kitchen', {
+        params: { name: name },
+      })
+        .then((resp) => {
+          console.log(resp);
+          console.log(resp.data);
+
+          setCurrentSoupKitchen({
+            id: resp.data.id,
+            name: resp.data.name,
+            cumulative_rate: resp.data.cumulative_rate,
+            picture_url: resp.data.picture_url,
+            location: resp.data.location,
+          });
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    };
+
+    getSoupKitchens();
+    getSoupKitchen();
   }, [currentId]);
 
   for (var i = 0; i < currentSoupKitchens.length; i++) {
-      variables[i] = currentSoupKitchens[i].name;
+    variables[i] = currentSoupKitchens[i].name;
   }
 
   const searchMe = () => {
@@ -132,7 +141,7 @@ export default () => {
     if (newList.length === variables.length) {
       return;
     }
-    
+
     return (
       <div>
         <h3>
@@ -147,9 +156,9 @@ export default () => {
       </div>
     );
   };
-  
+
   return (
-    <div onload={name = getQueryVariable("name")}>
+    <div onload={(name = getQueryVariable('name'))}>
       <div id='background-wrap'>
         <div class='x1'>
           <div class='cloud'></div>
@@ -195,7 +204,7 @@ export default () => {
         <Card style={style.card} centered>
           <Image
             size='small'
-            src={`${currentSoupKitchen.picture_url}`}
+            src='https://www.masonrymagazine.com/wp-content/uploads/2018/01/MCAA_CATHEDRAL_OF_ST_JOHN_THE-DEVINE_015.jpg'
             wrapped
             ui={false}
           />
@@ -206,43 +215,44 @@ export default () => {
           <Card.Description style={style.cardLocation}>
             {currentSoupKitchen.cumulative_rate}/5 Stars
           </Card.Description>
-          <Card.Meta style={style.cardLocation}>{currentSoupKitchen.location}</Card.Meta>
+          <Card.Meta style={style.cardLocation}>
+            {currentSoupKitchen.location}
+          </Card.Meta>
           <Card.Content description={description} />
 
           <div style={style.review}></div>
-            <Card.Content style={style.reviewTitle}>
-              4/5 Stars - Fantastic community
-            </Card.Content>
-            <Card.Description style={style.reviewContent}>
-              I had the greatest meal of my life here
-            </Card.Description>
+          <Card.Content style={style.reviewTitle}>
+            4/5 Stars - Fantastic community
+          </Card.Content>
+          <Card.Description style={style.reviewContent}>
+            I had the greatest meal of my life here
+          </Card.Description>
 
           <div style={style.review}></div>
-            <Card.Content style={style.reviewTitle}>
-              2/5 Stars - I've been to better
-            </Card.Content>
-            <Card.Description style={style.reviewContent}>
-              Meh.
-            </Card.Description>
-
+          <Card.Content style={style.reviewTitle}>
+            2/5 Stars - I've been to better
+          </Card.Content>
+          <Card.Description style={style.reviewContent}>Meh.</Card.Description>
 
           <div style={style.review}></div>
-            <Card.Content style={style.reviewTitle}>
-              4/5 Stars - Nice people!
-            </Card.Content>
-            <Card.Description style={style.reviewContent}>
-              Very nice people.
-            </Card.Description>
+          <Card.Content style={style.reviewTitle}>
+            4/5 Stars - Nice people!
+          </Card.Content>
+          <Card.Description style={style.reviewContent}>
+            Very nice people.
+          </Card.Description>
 
           <div style={style.review}></div>
-            <Card.Content style={style.reviewTitle}>
-              3/5 Stars - Fantastic sisters
-            </Card.Content>
-            <Card.Description style={style.reviewContent}>
-              Gave me good food.
-            </Card.Description>
+          <Card.Content style={style.reviewTitle}>
+            3/5 Stars - Fantastic sisters
+          </Card.Content>
+          <Card.Description style={style.reviewContent}>
+            Gave me good food.
+          </Card.Description>
         </Card>
-        <a href={`/review?id=${currentSoupKitchen.id}`}><Button>Submit a Review</Button></a>
+        <a href={`/review?id=${currentSoupKitchen.id}`}>
+          <Button>Submit a Review</Button>
+        </a>
       </Container>
     </div>
   );
