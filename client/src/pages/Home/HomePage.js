@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
+import { Redirect, Link } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import { Container, Header, Form, Input, Button } from 'semantic-ui-react';
 import './style.css';
@@ -71,17 +72,19 @@ export default () => {
     if (newList.length === variables.length) {
       return;
     }
-
+    
     return (
-      <h3>
-        {newList.map((variable) => (
-          <p>
-            <a href='google.com' key={variable}>
-              {variable}
-            </a>
-          </p>
-        ))}
-      </h3>
+      <div>
+        <h3>
+          {newList.map((variable) => (
+            <p>
+              <a href='/soupkitchen?id=0' key={variable}>
+                {variable}
+              </a>
+            </p>
+          ))}
+        </h3>
+      </div>
     );
   };
 
