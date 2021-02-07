@@ -7,16 +7,15 @@ const listSoupKitchens = async(req, res) => {
         );
         
         const resp = [];
-        meetings.rows.forEach((obj) => {
+        soup_kitchens.rows.forEach((obj) => {
             resp.push({
                 id: obj.id,
                 name: obj.name,
-                cumulative_rate: obj.location
+                cumulative_rate: obj.cumulative_rate,
+                location: obj.location
             });
         });
         
-        console.log("hello");
-        console.log(resp.length);
         return res.status(200).json(resp);
     } catch (error) {
         console.error(error);

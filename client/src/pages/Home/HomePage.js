@@ -39,53 +39,36 @@ export default () => {
     setSearch({ ...currentSearch, [event.target.name]: event.target.value });
   };
   
-  const getHello = async () => {
-      try {
-        const resp = await Axios({
-          method: 'GET',
-          url: '/api/hello',
-          headers: {
-            'Content-Type': 'application/json'
-          }
-        });
-      } catch (error) {
-          console.error(error);
-      }
-  }
-  
   useEffect(() => {
       const getSoupKitchens = async () => {
-          try {
-              const resp = await Axios({
-                method: 'GET',
-                url: '/api/soup_kitchen/get_soup_kitchens',
-                headers: {
-                  'Content-Type': 'application/json'
-                }
-              });
-              if(!resp.data.length) {
-                return setLoadMore(false);
-              }
+          Axios.get("api/soup_kitchen/show_soup_kitchens")
+            .then(resp => {
               setCurrentSoupKitchens(resp.data);
-          } catch (error) {
+              console.log(resp);
+              console.log(resp.data);
+            })
+            .catch(error =>{
               console.log(error)
-          }
+            });
       }
       getSoupKitchens();
   }, [currentId]);
   
+  for (var i = 0; i < currentSoupKitchens.length; i++) {
+      variables[i] = currentSoupKitchens[i].name;
+  }
   
   const searchMe = () => {
     var i = 0;
     var newList = [];
-    while (i < soupkitchens.length) {
-      if (!soupkitchens[i].search(currentSearch.search)) {
-        newList[newList.length] = soupkitchens[i];
+    while (i < variables.length) {
+      if (!variables[i].search(currentSearch.search)) {
+        newList[newList.length] = variables[i];
       }
       i++;
     }
 
-    if (newList.length === soupkitchens.length) {
+    if (newList.length === variables.length) {
       return;
     }
 
@@ -145,14 +128,13 @@ export default () => {
               value={currentSearch.search}
               size='massive'
               onChange={updateCurrentSearch}
-              onClick={console.log(variables)}
+              onClick={console.log(variables[0])}
               icon='search'
               placeholder='Search up soupkitchens alphabetically!'
             />
           </Form.Field>
           {searchMe()}
         </Form>
-        <Button onClick={getHello}>Hello</Button>
       </Container>
     </div>
   );
