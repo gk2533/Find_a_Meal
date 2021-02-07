@@ -189,7 +189,6 @@ export default () => {
           {searchMe}
         </Form>
         <Header as='h3'>Leave a review!</Header>
-<<<<<<< HEAD
         <Form>
           <Form.Field
             id='rating'
@@ -213,32 +212,6 @@ export default () => {
             label=''
           />
         </Form>
-=======
-          <Form>
-            <Form.Field
-              id = 'rating'
-              control={Select}
-              options={ratingOptions}
-              label='Rating'
-              placeholder='5'
-              search
-              onClick={console.log(ratingOptions.value)}
-              searchInput={{ id: 'form-select-rating' }}
-            />
-            <Form.Field
-              id='form-textarea-control-opinion'
-              control={TextArea}
-              label='Review'
-              placeholder='Write your review here'
-            />
-            <Form.Field
-              id='form-button-control-public'
-              control={Button}
-              content='Submit'
-              label=''
-            />
-          </Form>
->>>>>>> 63359bb44f866630f343921a626e92fa3dd085b0
       </Container>
     </div>
   );
