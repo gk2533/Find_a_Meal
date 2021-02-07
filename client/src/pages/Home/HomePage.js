@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Container, Header, Form, Input } from 'semantic-ui-react';
-import 'style.css';
+import './style.css';
 
 const style = {
   logo: {
@@ -59,6 +59,27 @@ export default () => {
 
   return (
     <div>
+      <div id="background-wrap">
+          <div class="x1">
+              <div class="cloud"></div>
+          </div>
+
+          <div class="x2">
+              <div class="cloud"></div>
+          </div>
+
+          <div class="x3">
+              <div class="cloud"></div>
+          </div>
+
+          <div class="x4">
+              <div class="cloud"></div>
+          </div>
+
+          <div class="x5">
+              <div class="cloud"></div>
+          </div>
+      </div>
       <Container>
         <Header as='h1' style={style.logo} textAlign='center'>
           Soupkitchen
