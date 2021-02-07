@@ -47,7 +47,7 @@ const style = {
 };
 
 const description =
-  'The Holy Spirit Soupkitchen has been open since 1374, and has served over 1 billion people. God bless you.';
+  'The mission of Cathedral Community Cares (CCC) is to combat and alleviate poverty through preventive poverty services, education and advocacy--specifically targeting the issues of health and hunger. CCC tackles these problems on multiple fronts by addressing the immediate and beyond-emergency needs of the underserved, while seeking long-term policy solutions that will benefit both clients and the greater community. As a part of "the living Cathedral," CCC operates, coordinates and expands its direct service programs and advocacy campaigns based on the ever-unfolding, diverse needs of the community, while fostering self-sufficiency and cultivating social justice through outreach and education. For more information on Cathedral Community Cares services, please call (212) 316-7583. (Taken from https://www.stjohndivine.org/education/community/)';
 
 export default () => {
   let name = '';
