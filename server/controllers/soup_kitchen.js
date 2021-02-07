@@ -15,7 +15,9 @@ const listSoupKitchens = async(req, res) => {
             });
         });
         
-        return res.status(200).json({message: 'Listing soup kitchens'});
+        console.log("hello");
+        console.log(resp.length);
+        return res.status(200).json(resp);
     } catch (error) {
         console.error(error);
         return res.status(500).json({message: 'Failed to list soup kitchens'});

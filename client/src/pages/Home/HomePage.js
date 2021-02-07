@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 import 'semantic-ui-css/semantic.min.css';
-import { Container, Header, Form, Input } from 'semantic-ui-react';
+import { Container, Header, Form, Input, Button } from 'semantic-ui-react';
 import './style.css';
 
 const style = {
@@ -20,8 +21,16 @@ const style = {
 };
 
 export default () => {
-  var soupkitchens = ['Zhihan', 'Zamie', 'Gabe', 'Zhihan Chen'];
+  const soupkitchens = ['Zhihan', 'Zamie', 'Gabe', 'Zhihan Chen'];
+  
+  const variables = []
+  
+  const [currentSoupKitchens, setCurrentSoupKitchens] = useState({});
 
+  const [currentId, setCurrentId] = useState(0);
+
+  const [loadMore, setLoadMore] = useState(true);
+  
   const [currentSearch, setSearch] = useState({
     search: '',
   });
@@ -29,7 +38,43 @@ export default () => {
   const updateCurrentSearch = (event) => {
     setSearch({ ...currentSearch, [event.target.name]: event.target.value });
   };
-
+  
+  const getHello = async () => {
+      try {
+        const resp = await Axios({
+          method: 'GET',
+          url: '/api/hello',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      } catch (error) {
+          console.error(error);
+      }
+  }
+  
+  useEffect(() => {
+      const getSoupKitchens = async () => {
+          try {
+              const resp = await Axios({
+                method: 'GET',
+                url: '/api/soup_kitchen/get_soup_kitchens',
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              });
+              if(!resp.data.length) {
+                return setLoadMore(false);
+              }
+              setCurrentSoupKitchens(resp.data);
+          } catch (error) {
+              console.log(error)
+          }
+      }
+      getSoupKitchens();
+  }, [currentId]);
+  
+  
   const searchMe = () => {
     var i = 0;
     var newList = [];
@@ -100,14 +145,15 @@ export default () => {
               value={currentSearch.search}
               size='massive'
               onChange={updateCurrentSearch}
-              onClick={console.log(currentSearch.search)}
+              onClick={console.log(variables)}
               icon='search'
               placeholder='Search up soupkitchens alphabetically!'
             />
           </Form.Field>
+          {searchMe()}
         </Form>
+        <Button onClick={getHello}>Hello</Button>
       </Container>
-      {searchMe()}
     </div>
   );
 };
