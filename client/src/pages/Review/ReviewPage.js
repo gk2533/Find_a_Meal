@@ -23,79 +23,7 @@ const style = {
 
 export default () => {
   var soupkitchens = ['Zhihan', 'Zamie', 'Gabe', 'Zhihan Chen'];
-
-  const variables = []
-  
-  let id = '';
-  
-  function getQueryVariable(variable)
-    {
-       var query = window.location.search.substring(1);
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] === variable){return pair[1];}
-       }
-       return(false);
-    }
-  
-  const [currentSoupKitchens, setCurrentSoupKitchens] = useState({});
-
-  const [currentId, setCurrentId] = useState(0);
-  
-  const [currentSearch, setSearch] = useState({
-    search: '',
-  });
-
-  const [currentReview, setCurrentReview] = useState({
-    id: id,
-    review: '',
-    rate: 3
-  })
-  
-  const updateCurrentSearch = (event) => {
-    setSearch({ ...currentSearch, [event.target.name]: event.target.value });
-  };
-  
-  const updateCurrentReview = (event) => {
-    setCurrentReview({ ...currentReview, [event.target.name]: event.target.value });
-  };
-  
-  useEffect(() => {
-      const getSoupKitchens = async () => {
-          Axios.get("api/soup_kitchen/show_soup_kitchens")
-            .then(resp => {
-              setCurrentSoupKitchens(resp.data);
-              console.log(resp);
-              console.log(resp.data);
-            })
-            .catch(error =>{
-              console.log(error)
-            });
-      }
-      getSoupKitchens();
-  }, [currentId]);
-  
-  for (var i = 0; i < currentSoupKitchens.length; i++) {
-      variables[i] = currentSoupKitchens[i].name;
-  }
-  
-  const createReview = async (event) => {
-    event.preventDefault();
     
-    setCurrentReview({id: id})
-    
-    Axios.post("api/soup_kitchens/post_review", currentReview)
-      .then(resp => {
-          console.log(resp);
-      })
-      .catch(error => {
-          console.error(error);
-      })
-      
-    // window.location.reload();
-  }
-  
   const searchMe = () => {
     var i = 0;
     var newList = [];
