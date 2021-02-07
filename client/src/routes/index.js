@@ -4,7 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import SoupkitchenPage from '../pages/SoupkitchenPage';
 import ReviewPage from '../pages/ReviewPage';
-import ReviewPage from '../pages/ReviewPage';
+import FindPage from '../pages/FindPage';
 
 export default () => {
   return (

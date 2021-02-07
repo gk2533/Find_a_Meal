@@ -1,9 +1,7 @@
 import React from 'react';
-import Reviews from '../../components/Review/Review';
-
+// import Reviews from '../../components/Review/Review';
 
 export default () => {
-
   const reviews = [];
 
   // props.reviews.forEach((review) => {
@@ -12,9 +10,5 @@ export default () => {
   //   );
   // });
 
-  return (
-      <div>
-        {reviews}
-      </div>
-  );
+  return <div>{reviews}</div>;
 };
