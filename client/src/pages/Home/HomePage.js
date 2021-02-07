@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import 'semantic-ui-css/semantic.min.css';
 import { Container, Header, Form, Input } from 'semantic-ui-react';
+import 'style.css';
 
 const style = {
   logo: {
@@ -19,16 +20,15 @@ const style = {
 };
 
 export default () => {
-  
   var soupkitchens = ['Zhihan', 'Zamie', 'Gabe', 'Zhihan Chen'];
 
   const [currentSearch, setSearch] = useState({
-      search: '',
+    search: '',
   });
 
   const updateCurrentSearch = (event) => {
-      setSearch({ ...currentSearch, [event.target.name]: event.target.value });
-  }
+    setSearch({ ...currentSearch, [event.target.name]: event.target.value });
+  };
 
   const searchMe = () => {
     var i = 0;
@@ -39,20 +39,24 @@ export default () => {
       }
       i++;
     }
-    
+
     if (newList.length === soupkitchens.length) {
-          return
+      return;
     }
-    
+
     return (
       <h3>
         {newList.map((variable) => (
-          <p><a href="google.com" key={variable}>{variable}</a></p>
+          <p>
+            <a href='google.com' key={variable}>
+              {variable}
+            </a>
+          </p>
         ))}
       </h3>
     );
-  }
-  
+  };
+
   return (
     <div>
       <Container>
@@ -76,7 +80,7 @@ export default () => {
               size='massive'
               onChange={updateCurrentSearch}
               onClick={console.log(currentSearch.search)}
-              icon = 'search'
+              icon='search'
               placeholder='Search up soupkitchens alphabetically!'
             />
           </Form.Field>
