@@ -138,41 +138,38 @@ export default () => {
           <Card.Meta style={style.cardLocation}>Brooklyn, New York</Card.Meta>
           <Card.Content description={description} />
 
-          <div style={style.review}>
+          <div style={style.review}></div>
             <Card.Content style={style.reviewTitle}>
               4/5 Stars - Fantastic community
             </Card.Content>
             <Card.Description style={style.reviewContent}>
               I had the greatest meal of my life here
             </Card.Description>
-          </div>
 
-          <div style={style.review}>
+          <div style={style.review}></div>
             <Card.Content style={style.reviewTitle}>
               2/5 Stars - I've been to better
             </Card.Content>
             <Card.Description style={style.reviewContent}>
               Meh.
             </Card.Description>
-          </div>
 
-          <div style={style.review}>
+
+          <div style={style.review}></div>
             <Card.Content style={style.reviewTitle}>
               4/5 Stars - Nice people!
             </Card.Content>
             <Card.Description style={style.reviewContent}>
               Very nice people.
             </Card.Description>
-          </div>
 
-          <div style={style.review}>
+          <div style={style.review}></div>
             <Card.Content style={style.reviewTitle}>
               3/5 Stars - Fantastic sisters
             </Card.Content>
             <Card.Description style={style.reviewContent}>
               Gave me good food.
             </Card.Description>
-          </div>
         </Card>
       </Container>
     </div>
