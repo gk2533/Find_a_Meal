@@ -185,7 +185,7 @@ export default () => {
               label='Rating'
               placeholder='5'
               search
-              onClick={console.log(this.target.value)}
+              onClick={console.log(ratingOptions.value)}
               searchInput={{ id: 'form-select-rating' }}
             />
             <Form.Field
