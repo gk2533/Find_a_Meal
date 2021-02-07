@@ -29,8 +29,6 @@ export default () => {
   const [currentSoupKitchens, setCurrentSoupKitchens] = useState({});
 
   const [currentId, setCurrentId] = useState(0);
-
-  const [loadMore, setLoadMore] = useState(true);
   
   const [currentSearch, setSearch] = useState({
     search: '',
@@ -78,7 +76,7 @@ export default () => {
         <h3>
           {newList.map((variable) => (
             <p>
-              <a href='/soupkitchen?id=0' key={variable}>
+              <a href={`/soupkitchen?name=${variable}`} key={variable}>
                 {variable}
               </a>
             </p>

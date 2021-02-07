@@ -25,12 +25,13 @@ const listSoupKitchens = async(req, res) => {
 
 const getSoupKitchen = async(req, res) => {
     try {
-        const soup_kitchen_id = req.body;
+        const { name } = req.query;
         const soup_kitchen = await pool.query(
-            'SELECT name, cumulative_rate, picture_url, location FROM soup_kitchen WHERE id = $1', [soup_kitchen_id]
+            'SELECT id, name, cumulative_rate, picture_url, location FROM soup_kitchen WHERE name = $1', [name]
         );
         
         const resp = {
+            id: soup_kitchen.rows[0].id,
             name: soup_kitchen.rows[0].name,
             cumulative_rate: soup_kitchen.rows[0].cumulative_rate,
             picture_url: soup_kitchen.rows[0].picture_url,
@@ -68,6 +69,7 @@ const getReviewList = async(req, res) => {
 const postReview = async(req, res) => {
     try {
         const { soup_kitchen_id, text, rate } = req.body;
+        console.log(soup_kitchen_id);
         posting = await pool.query(
             'INSERT INTO review (soup_kitchen_id, review_text, individual_rate) VALUES ($1, $2, $3)', [soup_kitchen_id, text, rate]
         );

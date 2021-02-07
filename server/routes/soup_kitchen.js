@@ -9,7 +9,7 @@ const router = require('express').Router();
 
 router.get('/show_soup_kitchens', listSoupKitchens);
 
-router.get('/get_soup_kitchen', getSoupKitchen);
+router.get('/:get_soup_kitchen', getSoupKitchen);
 
 router.get('/review_list', getReviewList);
 
